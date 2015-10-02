@@ -1,0 +1,13 @@
+<h1>New Ad</h1>
+<%= form_for @ad do |f| %>
+  <%= f.label :title %>
+  <%= f.text_field :title, placeholder: "Enter ad title" %>
+
+  <%= f.label :copy %>
+  <%= f.text_area :copy, placeholder: "Enter ad copy body" %>
+  
+  <%= f.label :price %>
+  <%= f.number_field :price %>
+  
+  <%= f.submit "Save" %>
+<% end %>
