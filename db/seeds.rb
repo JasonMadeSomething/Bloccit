@@ -6,9 +6,11 @@ topics = Topic.all
 50.times { Post.create!(topic: topics.sample, title: RandomData.random_sentence, body: RandomData.random_paragraph) }
 posts = Post.all
 
+30.times { SponsoredPost.create!(topic: topics.sample, title: RandomData.random_sentence, body: RandomData.random_paragraph, price: [1..1000].sample ) }
 100.times { Comment.create!(post: posts.sample, body: RandomData.random_paragraph) }
 
 puts "Seed finished"
 puts "#{Topic.count} topics created"
 puts "#{Post.count} posts created"
+puts "#{SponsoredPost.count} sponsored posts created"
 puts "#{Comment.count} comments created"
