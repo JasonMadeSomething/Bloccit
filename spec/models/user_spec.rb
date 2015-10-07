@@ -25,8 +25,15 @@ RSpec.describe User, type: :model do
     it "should respond to email" do
       expect(user).to respond_to(:email)
     end
+  
+    it "should automatically format the name on save" do
+      user.name = "stevie wonder jobs"
+      user.save
+      expect(user.name).to eq "Stevie Wonder Jobs"
+    end
     
   end
+  
   
   describe "invalid user" do
     
