@@ -7,30 +7,31 @@ RSpec.describe TopicsController, type: :controller do
 
   context "guest" do
     describe "GET index" do
-      it "returns http success" do
+      before do
         get :index
+      end
+      it "returns http success" do
         expect(response).to have_http_status(:success)
       end
 
       it "assigns Topic.all to topic" do
-        get :index
         expect(assigns(:topics)).to eq([my_topic])
       end
     end
 
     describe "GET show" do
-      it "returns http success" do
+      before do
         get :show, {id: my_topic.id}
+      end
+      it "returns http success" do
         expect(response).to have_http_status(:success)
       end
 
       it "renders the #show view" do
-        get :show, {id: my_topic.id}
         expect(response).to render_template :show
       end
 
       it "assigns my_topic to @topic" do
-        get :show, {id: my_topic.id}
         expect(assigns(:topic)).to eq(my_topic)
       end
     end
@@ -81,30 +82,33 @@ RSpec.describe TopicsController, type: :controller do
     end
 
     describe "GET index" do
-      it "returns http success" do
+      before do
         get :index
+      end
+      
+      it "returns http success" do
         expect(response).to have_http_status(:success)
       end
 
       it "assigns Topic.all to topic" do
-        get :index
         expect(assigns(:topics)).to eq([my_topic])
       end
     end
 
     describe "GET show" do
-      it "returns http success" do
+      before do
         get :show, {id: my_topic.id}
+      end
+      
+      it "returns http success" do
         expect(response).to have_http_status(:success)
       end
 
       it "renders the #show view" do
-        get :show, {id: my_topic.id}
         expect(response).to render_template :show
       end
 
       it "assigns my_topic to @topic" do
-        get :show, {id: my_topic.id}
         expect(assigns(:topic)).to eq(my_topic)
       end
     end
@@ -155,47 +159,50 @@ RSpec.describe TopicsController, type: :controller do
     end
 
     describe "GET index" do
-      it "returns http success" do
+      before do
         get :index
+      end
+      it "returns http success" do
         expect(response).to have_http_status(:success)
       end
 
       it "assigns Topic.all to topic" do
-        get :index
         expect(assigns(:topics)).to eq([my_topic])
       end
     end
 
     describe "GET show" do
-      it "returns http success" do
+      before do
         get :show, {id: my_topic.id}
+      end
+      
+      it "returns http success" do
         expect(response).to have_http_status(:success)
       end
 
       it "renders the #show view" do
-        get :show, {id: my_topic.id}
         expect(response).to render_template :show
       end
 
       it "assigns my_topic to @topic" do
-        get :show, {id: my_topic.id}
         expect(assigns(:topic)).to eq(my_topic)
       end
     end
 
     describe "GET new" do
-      it "returns http success" do
+      before do
         get :new
+      end
+      
+      it "returns http success" do
         expect(response).to have_http_status(:success)
       end
 
       it "renders the #new view" do
-        get :new
         expect(response).to render_template :new
       end
 
       it "initializes @topic" do
-        get :new
         expect(assigns(:topic)).not_to be_nil
       end
     end
@@ -217,18 +224,19 @@ RSpec.describe TopicsController, type: :controller do
     end
 
     describe "GET edit" do
-      it "returns http success" do
+      before do
         get :edit, {id: my_topic.id}
+      end
+      
+      it "returns http success" do
         expect(response).to have_http_status(:success)
       end
 
       it "renders the #edit view" do
-        get :edit, {id: my_topic.id}
         expect(response).to render_template :edit
       end
 
       it "assigns topic to be updated to @topic" do
-        get :edit, {id: my_topic.id}
         topic_instance = assigns(:topic)
 
         expect(topic_instance.id).to eq my_topic.id
@@ -260,14 +268,16 @@ RSpec.describe TopicsController, type: :controller do
     end
 
     describe "DELETE destroy" do
-      it "deletes the topic" do
+      before do
         delete :destroy, {id: my_topic.id}
+      end
+      
+      it "deletes the topic" do
         count = Post.where({id: my_topic.id}).size
         expect(count).to eq 0
       end
 
       it "redirects to topics index" do
-        delete :destroy, {id: my_topic.id}
         expect(response).to redirect_to topics_path
       end
     end
