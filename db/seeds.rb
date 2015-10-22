@@ -10,9 +10,9 @@ posts = Post.all
 
 100.times { Comment.create!(post: posts.sample, body: RandomData.random_paragraph) }
 
-admin = User.create!(name: 'Admin User', email: 'admin@example.com', password: 'helloworld', role: 'admin')
+admin = User.create!(name: 'Admin User', email: 'admin@example.com', password: 'helloworld', role: :admin)
 member = User.create!(name: 'Member User', email: 'member@example.com', password: 'helloworld')
-
+mod = User.create!(name: "Moderator User", email: 'mod@example.com', password: "helloworld", role: :moderator)
 puts "Seed finished"
 puts "#{User.count} users created"
 puts "#{Topic.count} topics created"
