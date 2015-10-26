@@ -1,0 +1,8 @@
+You created "<%= @post.title %>"
+<%= "=" * (@post.title.length + 12 ) %>
+
+<%= @post.body %>
+
+Visit online at: <%= topic_post_url(@post.topic, @post) %>
+
+You will receive notification when comments are made on this post. Unfavorite the post to stop.
