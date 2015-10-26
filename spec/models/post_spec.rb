@@ -34,6 +34,12 @@ RSpec.describe Post, type: :model do
     
   end
   
+  describe "create_vote callback" do
+    it "sets points to 1" do
+      expect(post.points).to eq(1)
+    end
+  end
+  
   describe "voting" do
     
     before do
