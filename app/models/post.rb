@@ -4,7 +4,7 @@ class Post < ActiveRecord::Base
   has_many :comments, dependent: :destroy
   has_many :labelings, as: :labelable
   has_many :labels, through: :labelings
-  
+  has_one :rating, as: :rateable
   default_scope { order('created_at DESC') }
   
   validates :title, length: {minimum: 5 }, presence: true
