@@ -3,13 +3,14 @@ include RandomData
 include SessionsHelper
 
 RSpec.describe TopicsController, type: :controller do
-  let (:my_topic) { Topic.create!(name:  RandomData.random_sentence, description:   RandomData.random_paragraph) }
+  let(:my_topic) { create(:topic) }
 
   context "guest" do
     describe "GET index" do
       before do
         get :index
       end
+      
       it "returns http success" do
         expect(response).to have_http_status(:success)
       end
