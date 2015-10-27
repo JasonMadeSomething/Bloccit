@@ -19,8 +19,35 @@
   </div>
 </div>
 
-<h2>Posts</h2>
-<%= render @user.posts %>
+<% if posts?(@user) %>
+  <h2>Posts</h2>
+  <%= render @user.posts %>
+<% else %>
+  <%= "#{@user.name} has not submitted any posts yet" %>
+<% end %>
 
-<h2>Comments</h2>
-<%= render @user.comments %>
+<% if comments?(@user) %>
+  <h2>Comments</h2>
+  <%= render @user.comments %>
+<% else %>
+  <%= "#{@user.name} has not submitted any comments yet" %>
+<% end %>
+
+<% if !(@user.favorites.empty?) %>
+  <h2>Favorites</h2>
+  <% @user.favorites.each do |fav| %>
+    <div class="media">
+      <div class="pull-left">
+        <%= image_tag User.avatar_url(fav.post.user, 48), class: "gravatar" %>
+        <div><strong><%= fav.post.points %> points</strong></div>
+      </div>
+      <div class="media-body">
+        <h4 class="media-heading"><%= link_to fav.post.title, topic_post_path( fav.post.topic, fav.post) %> </h4>
+        <small>
+          submitted <%= time_ago_in_words(fav.post.created_at) %> ago by <%= fav.post.user.name %> <br>
+          <%= pluralize(fav.post.comments.count, 'comment') %>
+        </small>
+      </div>
+    </div>
+  <% end %>
+<% end %>
