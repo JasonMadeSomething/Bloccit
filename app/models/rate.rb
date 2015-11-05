@@ -1,5 +1,6 @@
 class Rate < ActiveRecord::Base
   enum severity: [:PG, :PG13, :R]
+  
   has_many :ratings
   
   belongs_to :rateable, polymorphic: true
@@ -9,6 +10,6 @@ class Rate < ActiveRecord::Base
   has_many :posts, through: :ratings, source: :rateable, source_type: :Post
   
   def self.update_rates(rate_string)
-    #split string, iterate, strip, Rate.severities
+    return Rate.severities[rate_string]
   end
 end

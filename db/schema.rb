@@ -24,6 +24,16 @@ ActiveRecord::Schema.define(version: 20151029215207) do
   add_index "comments", ["post_id"], name: "index_comments_on_post_id"
   add_index "comments", ["user_id"], name: "index_comments_on_user_id"
 
+  create_table "favorites", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "post_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "favorites", ["post_id"], name: "index_favorites_on_post_id"
+  add_index "favorites", ["user_id"], name: "index_favorites_on_user_id"
+
   create_table "labelings", force: :cascade do |t|
     t.integer  "label_id"
     t.integer  "topic_id"
@@ -56,6 +66,7 @@ ActiveRecord::Schema.define(version: 20151029215207) do
     t.datetime "updated_at", null: false
     t.integer  "topic_id"
     t.integer  "user_id"
+    t.float    "rank"
   end
 
   add_index "posts", ["topic_id"], name: "index_posts_on_topic_id"
@@ -101,6 +112,18 @@ ActiveRecord::Schema.define(version: 20151029215207) do
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
     t.integer  "role"
+    t.string   "auth_token"
   end
+
+  create_table "votes", force: :cascade do |t|
+    t.integer  "value"
+    t.integer  "user_id"
+    t.integer  "post_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "votes", ["post_id"], name: "index_votes_on_post_id"
+  add_index "votes", ["user_id"], name: "index_votes_on_user_id"
 
 end

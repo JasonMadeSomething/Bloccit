@@ -1,0 +1,6 @@
+<%= f.label :rating %>
+<% if rating %>
+   <%= f.select :rating, options_for_select(Rate.severities, Rate.severities[rating.severity]) %>
+<% else %>
+   <%= f.select :rating, options_for_select(Rate.severities) %>
+<% end %>
